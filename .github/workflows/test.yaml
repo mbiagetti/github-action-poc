@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    name: test-job
+    steps:
+      - name: setup env variable
+        run: |
+          BRANCH_NAME=`echo "${{github.head_ref}}"'`
+          echo "BRANCH_NAME=$BRANCH_NAME >> $GITHUB_ENV"
+          echo ${{ env.BRANCH_NAME }}
+      - name: read env variable (first)
+        run: |
+          echo ${{ env.BRANCH_NAME }}
+      - name: read env variable (second)
+        env:
+          BRANCH_NAME: ${{ env.BRANCH_NAME }}
+        run: |
+          echo $BRANCH_NAME
+
