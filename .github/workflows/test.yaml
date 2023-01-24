@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: setup env variable
         run: |
-          BRANCH_NAME="${{github.head_ref}}"
+          BRANCH_NAME="the branch name"
           echo "BRANCH_NAME=$BRANCH_NAME >> $GITHUB_ENV"
           echo ${{ env.BRANCH_NAME }}
       - name: read env variable (first)
