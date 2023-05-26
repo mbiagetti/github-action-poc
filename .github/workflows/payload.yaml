@@ -4,8 +4,8 @@ name: Test Payload from env var
 on:
   push:
 
-#env:
-#  BRANCH_NAME: ${GITHUB_REF##*/}
+env:
+  BRANCH_NAME: ${GITHUB_REF##*/}
 
 
 
@@ -23,5 +23,7 @@ jobs:
           echo "BRANCH_NAME=${branch}" >> $GITHUB_ENV
       - name: call
         uses: ./.github/actions/echo
+        env:
+          ciao: ${{ env.BRANCH_NAME }}
         with:
-            payload: '{"Name": "${{ env.BRANCH_NAME }}" }'
+            payload: '{"Name": "${ciao}" }'
