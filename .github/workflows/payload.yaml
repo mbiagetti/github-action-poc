@@ -4,8 +4,8 @@ name: Test Payload from env var
 on:
   push:
 
-env:
-  BRANCH_NAME: ${GITHUB_REF##*/}
+#env:
+#  BRANCH_NAME: ${GITHUB_REF##*/}
 
 
 
@@ -17,6 +17,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: extract branch name
+        run: |
+          branch=$(echo "${GITHUB_REF##*/}")
+          echo "BRANCH_NAME=${branch}" >> $GITHUB_ENV
       - name: call
         uses: ./.github/actions/echo
         with:

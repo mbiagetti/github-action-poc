@@ -12,4 +12,4 @@ runs:
     - name: curl call
       shell: bash
       run: |
-        curl -d '${{ inputs.payload }}' -H "Content-Type: application/json" -X POST http:postman-echo.com/post
+        curl -d '${{ inputs.payload }}' -H "Content-Type: application/json" -X POST https://postman-echo.com/post
