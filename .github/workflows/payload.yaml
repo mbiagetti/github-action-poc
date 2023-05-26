@@ -1,0 +1,23 @@
+name: Test Payload from env var
+
+
+on:
+  push:
+
+env:
+  BRANCH_NAME: ${GITHUB_REF##*/}
+
+
+
+jobs:
+  payload:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: call
+        uses: ./.github/actions/echo
+        with:
+            payload: '{"Name": "${env.BRANCH_NAME}" }'

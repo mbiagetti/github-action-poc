@@ -1,0 +1,15 @@
+name: 'Call echo post'
+description: 'Just call echo post with the provided payload'
+
+inputs:
+  payload:
+    description: 'json stringify payload'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: curl call
+      shell: bash
+      run: |
+        curl -d '${{ inputs.payload }}' -H "Content-Type: application/json" -X POST http:postman-echo.com/post
