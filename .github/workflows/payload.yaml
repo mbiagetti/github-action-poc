@@ -20,4 +20,4 @@ jobs:
       - name: call
         uses: ./.github/actions/echo
         with:
-            payload: '{"Name": "${env.BRANCH_NAME}" }'
+            payload: '{"Name": "${{ env.BRANCH_NAME }}" }'
