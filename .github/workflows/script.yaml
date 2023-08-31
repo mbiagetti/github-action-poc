@@ -11,11 +11,12 @@ jobs:
         uses: actions/checkout@v3.6.0
 
       - run: ./script.sh >> script_out.txt
+      - run: MY_TEMP=$(cat script_out.txt)
       - name: Set the value in bash
         run: |
           {
             echo 'EXECUTION_OUTPUT<<EOF'
-            cat script_out.txt
+            echo "$MY_TEMP"
             echo EOF
           } >> "$GITHUB_ENV"
 
