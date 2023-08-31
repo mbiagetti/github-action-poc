@@ -10,11 +10,12 @@ jobs:
       - name: perform checkout
         uses: actions/checkout@v3.6.0
 
+      - run: ./script.sh >> script_out.txt
       - name: Set the value in bash
         run: |
           {
             echo 'EXECUTION_OUTPUT<<EOF'
-            ./script.sh
+            cat script_out.txt
             echo EOF
           } >> "$GITHUB_ENV"
 
