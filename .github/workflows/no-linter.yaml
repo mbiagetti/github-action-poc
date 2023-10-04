@@ -1,0 +1,13 @@
+name: Linter
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths-ignore:
+      - '**.py'
+  workflow_dispatch:
+jobs:
+  linter:
+    runs-on: windows-latest
+    steps:
+      - run: 'echo "No Linter required" '
