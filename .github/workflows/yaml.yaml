@@ -1,0 +1,24 @@
+name: Test Yaml substitution
+on:
+  push:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: deploy
+    steps:
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - run: cat credential-secret.yaml
+
+      - name: Update values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: credential-secret.yaml
+          propertyPath: data['api-key']
+          value: ${{ secrets.API_KEY_DEV_QA }}
+          commitChange: false
+
+      - run: cat credential-secret.yaml
